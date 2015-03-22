@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="none">
+
+	<!--<test name="Test" verbose="2">-->
+		<!--<classes>-->
+			<!--&lt;!&ndash;<class name="com.github.harrischu.webAuto.core.test.RepositoryTest">&ndash;&gt;-->
+				<!--&lt;!&ndash;<methods>&ndash;&gt;-->
+					<!--&lt;!&ndash;&lt;!&ndash;<include name="TestUTF" />&ndash;&gt;&ndash;&gt;-->
+				<!--&lt;!&ndash;</methods>&ndash;&gt;-->
+			<!--&lt;!&ndash;</class>&ndash;&gt;-->
+		<!--</classes>-->
+	<!--</test> &lt;!&ndash; Test &ndash;&gt;-->
+	<listeners>
+		<!--<listener class-name="org.uncommons.reportng.HTMLReporter" />-->
+		<!--<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />-->
+		<!-- <listener class-name="com.zendaimoney.fortune.autotest.listener.CaptureScreenListener" />-->
+	</listeners>
+	<!--<usedefaultlisteners name="false" />-->
+</suite> <!-- Suite -->

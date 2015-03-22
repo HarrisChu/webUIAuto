@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.harrischu</groupId>
+        <artifactId>UIAuto</artifactId>
+        <version>1.0.1</version>
+    </parent>
+    <version>1.0.1-SNAPSHOT</version>
+
+    <artifactId>webAuto</artifactId>
+    <packaging>jar</packaging>
+
+	<distributionManagement>
+	   <repository>
+		<id>snapshots</id>
+		<name>snapshots</name>
+		<url>http://192.16.230.101:8082/content/repositories/snapshots/</url>
+	   </repository>
+	</distributionManagement>
+</project>
