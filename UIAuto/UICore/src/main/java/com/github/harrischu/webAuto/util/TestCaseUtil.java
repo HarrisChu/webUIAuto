@@ -1,15 +1,15 @@
 package com.github.harrischu.webAuto.util;
 
+import com.github.harrischu.webAuto.core.TestCase;
 import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 通过反射获取所有的Test类，和类里面，所以的Test
@@ -56,7 +56,7 @@ public class TestCaseUtil {
      * @param clazzes
      */
     private static void putClass(String packageName, String packagePath,
-                                     Set<Class<?>> clazzes) {
+                                 Set<Class<?>> clazzes) {
         File dir = new File(packagePath);
         if (!dir.exists() || !dir.isDirectory()) {
             logger.error("文件不存在");
@@ -82,6 +82,36 @@ public class TestCaseUtil {
         }
     }
 
+    public static Set<Class<?>> getTestName(String packageStr){
+        Set<Class<?>> testcaseList = new HashSet<Class<?>>();
+        Set<Class<?>> clazzes = TestCaseUtil.getTestClass(packageStr);
+        for(Class<?> clazz:clazzes){
+            if(TestCase.class.isAssignableFrom(clazz)){
+                testcaseList.add(clazz);
+            }
+        }
+        return testcaseList;
+    }
+
+    /**
+     * 所有的测试类和方法，以Map<类,方法>放在集合里。
+     * @return
+     */
+    public static Set<Map<String, String>> getTestMethod(String packageStr){
+        Set<Map<String, String>> result = new HashSet<>();
+        for(Class clazz:getTestName(packageStr)){
+            for(Method method:clazz.getMethods()){
+                String testname = method.getName();
+                if(testname.startsWith("Test")){
+                    Map<String, String> record = new HashMap<>();
+                    record.put(clazz.getSimpleName(), testname);
+                    result.add(record);
+                }
+            }
+        }
+        return result;
+    }
+
     /**
      * 测试方法
      * @param args
@@ -91,6 +121,12 @@ public class TestCaseUtil {
                 "com.github.harrischu.webAuto.util");
         for(Class<?> clazz:classList){
             System.out.println(clazz.getSimpleName());
+        }
+
+        Set<Map<String, String>> testMethodList = TestCaseUtil.getTestMethod("com.zendaimoney.autotest.UItest.util");
+        for(Map <String, String> method:testMethodList){
+            System.out.println(method.keySet().toArray()[0] + "\t" +
+                    method.values().toArray()[0]);
         }
     }
 }
